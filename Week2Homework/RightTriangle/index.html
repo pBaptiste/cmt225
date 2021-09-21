@@ -1,0 +1,81 @@
+   <!DOCTYPE html>
+   <html>
+
+   <head>
+       <meta name="viewport" content="width=device-width, initial-scale=1">
+       <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+       <link rel="preconnect" href="https://fonts.googleapis.com">
+       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+       <link href="https://fonts.googleapis.com/css2?family=Voces&display=swap" rel="stylesheet">
+       <title>Right Triangle</title>
+
+   </head>
+
+   <body>
+       <main>
+           <h2>Find the <span>Hypotenuse</span> of a Right Triangle</h1>
+           <form id="triangle_form" name="triangle_form" action="index.html" method="get">
+               <div>
+                   <label for="first_side">Side 1:
+                   </label>
+                   <input type="text" id="first_side" name="first_side">
+               </div>
+               <div>
+                   <label for="second_side">Side 2:
+                   </label>
+                   <input type="text" id="second_side" name="second_side">
+               </div>
+               <div>
+                   <button type="button" id="calc_btn">Submit</button>
+               </div>
+           </form>
+           <div id="data"></div>
+       </main>
+       <script>
+           const $ = selector => document.querySelector(selector);
+
+           document.addEventListener("DOMContentLoaded", () => {
+
+               $("#calc_btn").addEventListener("click", evt => {
+                   // get values user entered in textboxes
+                   const firstSide = $("#first_side").value;
+                   const secondSide = $("#second_side").value;
+
+                   // create an error message and set it to an empty string
+                   let errorMessage = "";
+
+                   // check user entries – add to error message if invalid
+                   if (isNaN(firstSide) || firstSide <= 0) {
+                       errorMessage += "Valid number for the first side is required.\n";
+                   }
+                   if (isNaN(secondSide) || secondSide <= 0) {
+                       errorMessage += "Valid number for the second side is required.\n";
+                   }
+
+                   // prevent form submission if there’s an error message
+                   if (errorMessage != "") {
+                       alert(errorMessage);
+                       evt.preventDefault();
+
+                       // set the html to empty
+                       const html = "";
+                       document.getElementById("data").innerHTML = html;
+                       document.getElementById("triangle_form").reset();
+                   } else {
+                       evt.preventDefault();
+
+                       // calculate the Hypotenuse of the third side using the Pythagorean theorem: c = √(b²+a²)
+                       const thirdSide = Math.sqrt((firstSide * firstSide) + (secondSide * secondSide))
+                           .toFixed(2);
+
+                       const html = `<p> √(${firstSide}² + ${secondSide}²) ≈ <b>${thirdSide}</b></p>`;
+
+                       document.getElementById("data").innerHTML = html;
+                       document.getElementById("triangle_form").reset();
+                   }
+               });
+           });
+       </script>
+   </body>
+
+   </html>

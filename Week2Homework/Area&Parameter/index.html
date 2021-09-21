@@ -1,0 +1,83 @@
+   <!DOCTYPE html>
+   <html>
+
+   <head>
+       <meta name="viewport" content="width=device-width, initial-scale=1">
+       <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+       <link rel="preconnect" href="https://fonts.googleapis.com">
+       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+       <link href="https://fonts.googleapis.com/css2?family=Voces&display=swap" rel="stylesheet">
+       <title>Area and Parameter Calc</title>
+
+   </head>
+
+   <body>
+       <main>
+           <h2>Calculate the <span>Area</span> & <span>Perimeter</span> of a Rectangle</h2>
+           <form id="rectangle_form" name="rectangle_form" action="index.html" method="get">
+               <div>
+                   <label for="rect_width">Width:
+                   </label>
+                   <input type="text" id="rect_width" name="rect_width">
+               </div>
+               <div>
+                   <label for="rect_length">Length:
+                   </label>
+                   <input type="text" id="rect_length" name="rect_length">
+               </div>
+               <div>
+                   <button type="button" id="calc_btn">Submit</button>
+               </div>
+           </form>
+           <div id="data"></div>
+       </main>
+       <script>
+           const $ = selector => document.querySelector(selector);
+
+           document.addEventListener("DOMContentLoaded", () => {
+
+               $("#calc_btn").addEventListener("click", evt => {
+                   // get values user entered in textboxes
+                   const w = parseFloat($("#rect_width").value);
+                   const l = parseFloat($("#rect_length").value);
+
+                   // create an error message and set it to an empty string
+                   let errorMessage = "";
+
+                   // check user entries – add to error message if invalid
+                   if (isNaN(w) || w <= 0) {
+                       errorMessage += "Valid number for the width of the rectangle is required.\n";
+                   }
+                   if (isNaN(l) || l < 0) {
+                       errorMessage += "Valid number for the length of the rectangle is required.\n";
+                   }
+
+                   // prevent form submission if there’s an error message
+                   if (errorMessage != "") {
+                       alert(errorMessage);
+                       evt.preventDefault();
+
+                       // set the html to empty
+                       const html = "";
+                       document.getElementById("data").innerHTML = "";
+                       document.getElementById("rectangle_form").reset();
+                   } else {
+                       evt.preventDefault();
+
+                       // calculate the area
+                       const a = (w * l).toFixed(1);
+
+                       // calculate the perimeter of the rectangle
+                       const P = (2 * (l + w)).toFixed(1);
+
+                       const html = `<p>Area: <b>${a}</b> </br> Perimeter: <b>${P}</b></p>`;
+
+                       document.getElementById("data").innerHTML = html;
+                       document.getElementById("rectangle_form").reset();
+                   }
+               });
+           });
+       </script>
+   </body>
+
+   </html>

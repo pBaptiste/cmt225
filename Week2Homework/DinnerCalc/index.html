@@ -1,0 +1,81 @@
+   <!DOCTYPE html>
+   <html>
+
+   <head>
+       <meta name="viewport" content="width=device-width, initial-scale=1">
+       <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+       <link rel="preconnect" href="https://fonts.googleapis.com">
+       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+       <link href="https://fonts.googleapis.com/css2?family=Voces&display=swap" rel="stylesheet">
+       <title>Dinner Calc</title>
+
+   </head>
+
+   <body>
+       <main>
+           <h2>Calculate the <span>total</span> cost of a meal</h2>
+           <form id="meal_form" name="meal_form" action="index.html" method="get">
+               <div>
+                   <label for="meal_cost">Cost:
+                   </label>
+                   <input type="text" id="meal_cost" name="meal_cost">
+               </div>
+               <div>
+                   <label for="tip_percent">Tip %:
+                   </label>
+                   <input type="text" id="tip_percent" name="tip_percent">
+               </div>
+               <div>
+                   <button type="button" id="calc_btn">Submit</button>
+               </div>
+           </form>
+           <div id="data"></div>
+       </main>
+       <script>
+           const $ = selector => document.querySelector(selector);
+
+           document.addEventListener("DOMContentLoaded", () => {
+
+               $("#calc_btn").addEventListener("click", evt => {
+                   // get values user entered in textboxes
+                   const mealCost = parseFloat($("#meal_cost").value);
+                   const tipPercent = parseFloat($("#tip_percent").value);
+
+                   // create an error message and set it to an empty string
+                   let errorMessage = "";
+
+                   // check user entries – add to error message if invalid
+                   if (isNaN(mealCost) || mealCost <= 0) {
+                       errorMessage += "Valid number for the meal cost is required.\n";
+                   }
+                   if (isNaN(tipPercent) || tipPercent < 0) {
+                       errorMessage += "Valid number for the tip percentage is required.\n";
+                   }
+
+                   // prevent form submission if there’s an error message
+                   if (errorMessage != "") {
+                       alert(errorMessage);
+                       evt.preventDefault();
+
+                       // set the html to empty
+                       const html = "";
+                       document.getElementById("data").innerHTML = "";
+                       document.getElementById("meal_form").reset();
+                   } else {
+                       evt.preventDefault();
+
+                       // calculate the total cost of the meal
+                       const tip = mealCost * (tipPercent/100);
+                       const totalCost = mealCost + tip;
+
+                       const html = `<p>Total Cost of the Meal: <b>$${totalCost.toFixed(2)}</b></p>`;
+
+                       document.getElementById("data").innerHTML = html;
+                       document.getElementById("meal_form").reset();
+                   }
+               });
+           });
+       </script>
+   </body>
+
+   </html>

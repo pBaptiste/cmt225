@@ -1,0 +1,94 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    background: #373B44;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #4286f4, #373B44);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #4286f4, #373B44); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    display: flex;
+    justify-content: center;
+    font-family: 'Voces', cursive;
+}
+
+main{
+    width: 31%;
+    height: 50vh;
+    background: white;
+    margin-top: 4rem;
+    border-radius: 5px;
+    padding: 1.5rem;
+    font-family: 'Roboto', sans-serif;
+    font-family: 'Poppins', sans-serif; 
+}
+
+h2{
+    margin-bottom: 3.1rem;
+    font-size: 1.7rem;
+    color: #4286f4;
+    text-align: center;
+}
+
+span{
+    color: #373B44;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 3rem;
+}
+
+label{
+    font-weight: bold;
+    margin-right: .9rem;
+}
+
+input{
+    margin-bottom: 1.4rem;
+    border: 0;
+    border-bottom: 2px solid #373B44;
+    outline: 0;
+    width: 37%;
+    font-size: 1.1rem;
+    color: #000;
+    font-family: 'Poppins', sans-serif; 
+    padding-left: 1.1rem;
+}
+
+input::placeholder{
+    color: rgba(127, 194, 155, .6);
+    color: rgba(0,0,0,.4);
+    
+}
+
+
+input:focus{
+    border-image: linear-gradient(to right, #4286f4, #373B44);
+    border-image-slice: 1;
+}
+
+button{
+    border: none;
+    width: 25%;
+    padding: .6rem 1.2rem;
+    font-size: 1rem;
+    background-color: #7FC29B;
+    color:white;
+    margin-top: 1.2rem;
+    font-family: 'Poppins', sans-serif; 
+}
+
+button:hover{
+    background: rgba(127, 194, 155, .8);
+}
+
+
+#data{
+    font-size: 1.2rem;
+    line-height: 1.5rem;
+    font-family: 'Voces', cursive;
+}
